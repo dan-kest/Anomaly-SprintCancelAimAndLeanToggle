@@ -1,0 +1,28 @@
+local function on_key_press(key)
+	if key == bind_to_dik(key_bindings.kSPRINT_TOGGLE) then
+		local is_aim_toggle = ui_options.get("control/general/aim_toggle")
+		local is_lean_toggle = ui_options.get("control/general/lookout_toggle")
+
+		if axr_main.weapon_is_zoomed then
+			if is_aim_toggle then
+				if is_lean_toggle or not IsMoveState("mcLookout") then
+					level.press_action(bind_to_dik(key_bindings.kWPN_ZOOM))
+				end
+			else
+				return
+			end
+		end
+
+		if is_lean_toggle then
+			if IsMoveState("mcLLookout") then
+				level.press_action(bind_to_dik(key_bindings.kL_LOOKOUT))
+			elseif IsMoveState("mcRLookout") then
+				level.press_action(bind_to_dik(key_bindings.kR_LOOKOUT))
+			end
+		end
+	end
+end
+
+function on_game_start()
+	RegisterScriptCallback("on_key_press", on_key_press)
+end
