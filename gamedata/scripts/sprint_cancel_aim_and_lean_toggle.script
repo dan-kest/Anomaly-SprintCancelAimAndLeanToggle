@@ -1,5 +1,5 @@
 local function on_key_press(key)
-	if key == bind_to_dik(key_bindings.kSPRINT_TOGGLE) then
+	if dik_to_bind(key) == 7 then -- kSPRINT_TOGGLE
 		local is_aim_toggle = ui_options.get("control/general/aim_toggle")
 		local is_lean_toggle = ui_options.get("control/general/lookout_toggle")
 
